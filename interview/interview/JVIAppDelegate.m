@@ -7,6 +7,7 @@
 //
 
 #import "JVIAppDelegate.h"
+#import "JVIFeedViewController.h"
 
 @interface JVIAppDelegate ()
 
@@ -17,6 +18,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    JVIFeedViewController *feedViewController = [[JVIFeedViewController alloc] init];
+
+    UINavigationController *navigationController = [[UINavigationController alloc] init];
+    navigationController.navigationBar.translucent = NO;
+    [navigationController pushViewController:feedViewController animated:NO];
+
+    self.window.rootViewController = navigationController;
+
     [self.window makeKeyAndVisible];
 
     return YES;
