@@ -12,6 +12,8 @@
 		58CEC5A01A750EEA0039FE36 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58CEC59F1A750EEA0039FE36 /* Images.xcassets */; };
 		58CEC5AF1A750EEA0039FE36 /* interviewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CEC5AE1A750EEA0039FE36 /* interviewTests.m */; };
 		DFE8890D670DBBF5570D13F7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D81F80823F8095A79A2AFF /* libPods.a */; };
+		ED0E67E799CACFE65FF4160B /* JVIFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E6F7564C66B2940CC6084 /* JVIFeedViewController.m */; };
+		ED0E6D20453B535727C85138 /* UIView+JVDView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E68708ABAD43637E23D65 /* UIView+JVDView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,11 @@
 		58CEC5AE1A750EEA0039FE36 /* interviewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = interviewTests.m; sourceTree = "<group>"; };
 		A5D81F80823F8095A79A2AFF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDD3B211609ECE65AE4E5ED /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		ED0E63B4306D8C6D346E4783 /* JiveInterview-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JiveInterview-Prefix.pch"; sourceTree = "<group>"; };
+		ED0E685EDB70FA12B9392FB8 /* UIView+JVDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JVDView.h"; sourceTree = "<group>"; };
+		ED0E68708ABAD43637E23D65 /* UIView+JVDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JVDView.m"; sourceTree = "<group>"; };
+		ED0E6F2220DAD6AB5B4FB780 /* JVIFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIFeedViewController.h; sourceTree = "<group>"; };
+		ED0E6F7564C66B2940CC6084 /* JVIFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIFeedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +92,10 @@
 				58CEC5971A750EEA0039FE36 /* JVIAppDelegate.m */,
 				58CEC59F1A750EEA0039FE36 /* Images.xcassets */,
 				58CEC5921A750EEA0039FE36 /* Supporting Files */,
+				ED0E6F7564C66B2940CC6084 /* JVIFeedViewController.m */,
+				ED0E6F2220DAD6AB5B4FB780 /* JVIFeedViewController.h */,
+				ED0E6CFF3F57896DFDA7195F /* Views */,
+				ED0E6176870F2EAB109A256E /* Catergories */,
 			);
 			path = interview;
 			sourceTree = "<group>";
@@ -94,6 +105,7 @@
 			children = (
 				58CEC5931A750EEA0039FE36 /* Info.plist */,
 				58CEC5941A750EEA0039FE36 /* main.m */,
+				ED0E63B4306D8C6D346E4783 /* JiveInterview-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -130,6 +142,22 @@
 				46B04D1CA4E0A683D4AB115B /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		ED0E6176870F2EAB109A256E /* Catergories */ = {
+			isa = PBXGroup;
+			children = (
+				ED0E685EDB70FA12B9392FB8 /* UIView+JVDView.h */,
+				ED0E68708ABAD43637E23D65 /* UIView+JVDView.m */,
+			);
+			path = Catergories;
+			sourceTree = "<group>";
+		};
+		ED0E6CFF3F57896DFDA7195F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +296,8 @@
 			files = (
 				58CEC5981A750EEA0039FE36 /* JVIAppDelegate.m in Sources */,
 				58CEC5951A750EEA0039FE36 /* main.m in Sources */,
+				ED0E67E799CACFE65FF4160B /* JVIFeedViewController.m in Sources */,
+				ED0E6D20453B535727C85138 /* UIView+JVDView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +343,8 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "interview/JiveInterview-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -353,6 +385,8 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "interview/JiveInterview-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
