@@ -36,6 +36,9 @@
     [_tableView addSubview:_refreshControl];
     [_refreshControl addTarget:self action:@selector(refreshControlTriggered:) forControlEvents:UIControlEventValueChanged];
 
+    [_refreshControl beginRefreshing];
+    [_tableView setContentOffset:CGPointMake(0, -_refreshControl.frame.size.height) animated:NO];
+
     [self loadFirstPage];
 }
 
