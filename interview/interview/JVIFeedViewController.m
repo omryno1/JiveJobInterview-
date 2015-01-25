@@ -7,6 +7,8 @@
 #import "UIView+JVDView.h"
 #import "JVIInstagramService.h"
 #import "JVIPaginatedList.h"
+#import "JVIImage.h"
+#import "JVIFeedTableViewCell.h"
 
 
 @implementation JVIFeedViewController {
@@ -46,8 +48,28 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    static const NSString *CellIdentifier = @"Cell";
+    
+    JVIImage *image = _items[indexPath.row];
+    JVIFeedTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[JVIFeedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.separatorInset = UIEdgeInsetsZero;
+        [cell setPreservesSuperviewLayoutMargins:NO];
+        cell.layoutMargins = UIEdgeInsetsZero;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+
+    [cell updateImage:image];
+
+    return cell;
 }
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [JVIFeedTableViewCell heightForWidth:self.view.width];
+}
+
 
 - (void)refreshControlTriggered:(id)sender {
     [self loadFirstPage];
@@ -57,6 +79,7 @@
     [[JVIInstagramService sharedService] getFeedWithSuccess:^(JVIPaginatedList *list) {
         [_refreshControl endRefreshing];
         _items = list.entities;
+        [_tableView reloadData];
     } failed:^(NSError *error) {
         [_refreshControl endRefreshing];
         NSLog(@"Failed getting feed. %@", error);
