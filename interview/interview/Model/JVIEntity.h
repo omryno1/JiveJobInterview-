@@ -9,6 +9,8 @@
 
 @interface JVIEntity : JSONModel
 
+@property (nonatomic) NSString *id;
+
 +(instancetype) entityFromDictionary: (NSDictionary *) dictionary;
 
 @end

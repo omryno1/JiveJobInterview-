@@ -19,6 +19,7 @@
 		ED0E69787A4D1A3F4FFDFB36 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED0E6E000F41593C99CBDF9F /* Localizable.strings */; };
 		ED0E6D20453B535727C85138 /* UIView+JVDView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E68708ABAD43637E23D65 /* UIView+JVDView.m */; };
 		ED0E6D9279B5CAE92799242C /* JVIEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E664500D26759BD1898B7 /* JVIEntity.m */; };
+		ED0E6DFFDC60DD43DC6AE60A /* JVIUser.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E60B0D14F9BA275417EE7 /* JVIUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,11 +48,13 @@
 		ED0E606A6FCE335B5947D659 /* JVIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIImage.h; sourceTree = "<group>"; };
 		ED0E6080CE4AD82463344B27 /* JVIInstagramService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIInstagramService.m; sourceTree = "<group>"; };
 		ED0E60ADEA15809173F93DF9 /* JVIPaginatedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIPaginatedList.m; sourceTree = "<group>"; };
+		ED0E60B0D14F9BA275417EE7 /* JVIUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIUser.m; sourceTree = "<group>"; };
 		ED0E63B4306D8C6D346E4783 /* JiveInterview-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JiveInterview-Prefix.pch"; sourceTree = "<group>"; };
 		ED0E6592745E544F647BA02D /* JVIInstagramService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIInstagramService.h; sourceTree = "<group>"; };
 		ED0E66193993899F2ECDF024 /* JVIPaginatedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIPaginatedList.h; sourceTree = "<group>"; };
 		ED0E664500D26759BD1898B7 /* JVIEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIEntity.m; sourceTree = "<group>"; };
 		ED0E669B2C03D864DBF3F385 /* JVIEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIEntity.h; sourceTree = "<group>"; };
+		ED0E66EE1188EC9C4233E94F /* JVIUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIUser.h; sourceTree = "<group>"; };
 		ED0E685EDB70FA12B9392FB8 /* UIView+JVDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JVDView.h"; sourceTree = "<group>"; };
 		ED0E68708ABAD43637E23D65 /* UIView+JVDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JVDView.m"; sourceTree = "<group>"; };
 		ED0E6E000F41593C99CBDF9F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				ED0E669B2C03D864DBF3F385 /* JVIEntity.h */,
 				ED0E6FB596B3BD8227D68401 /* JVIImage.m */,
 				ED0E606A6FCE335B5947D659 /* JVIImage.h */,
+				ED0E60B0D14F9BA275417EE7 /* JVIUser.m */,
+				ED0E66EE1188EC9C4233E94F /* JVIUser.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				ED0E6097C2251E0A930D5899 /* JVIPaginatedList.m in Sources */,
 				ED0E6D9279B5CAE92799242C /* JVIEntity.m in Sources */,
 				ED0E6574D19B8DACB34AFA11 /* JVIImage.m in Sources */,
+				ED0E6DFFDC60DD43DC6AE60A /* JVIUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
