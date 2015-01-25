@@ -18,6 +18,8 @@
 - (void)loadView {
     [super loadView];
 
+    self.title = NSLocalizedString(@"interview.title", @"iOS Interview");
+
     _items = [[NSMutableArray alloc] init];
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero];
