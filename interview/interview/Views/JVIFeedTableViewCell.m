@@ -4,7 +4,7 @@
 //
 
 #import "JVIFeedTableViewCell.h"
-#import "UIView+JVDView.h"
+#import "UIView+JVIView.h"
 #import "JVIImage.h"
 #import "UIImageView+WebCache.h"
 #import "JVIUser.h"
@@ -49,7 +49,7 @@ static UIFont *nameFont;
     _nameLabel.left = _avatarImage.right + kMargin;
     _nameLabel.top = kGutter;
     _nameLabel.height = nameFont.lineHeight;
-    _nameLabel.width = self.width - _avatarImage.right - kMargin*2;
+    _nameLabel.width = self.width - _avatarImage.right - kMargin - kGutter;
 
     _image.left = 0;
     _image.top = MAX(_avatarImage.bottom, _nameLabel.bottom) + kGutter;
@@ -57,13 +57,14 @@ static UIFont *nameFont;
     _image.height = self.width;
 }
 
-- (void)updateImage:(JVIImage *)image {
+- (void)updateData:(JVIImage *)image {
     _nameLabel.text = image.user.full_name;
-    [_avatarImage sd_setImageWithURL:[[NSURL alloc] initWithString:image.user.profile_picture]];
-    [_image sd_setImageWithURL:[[NSURL alloc] initWithString:image.imageUrl]];
+    [_avatarImage sd_setImageWithURL:image.user.profile_picture];
+    [_image sd_setImageWithURL:image.imageUrl];
 }
 
 + (CGFloat)heightForWidth:(CGFloat)width {
-    return kGutter + MAX(kAvatarSize, nameFont.lineHeight) + kGutter + width + kGutter;
+    CGFloat heightOfImage = width;
+    return kGutter + MAX(kAvatarSize, nameFont.lineHeight) + kGutter + heightOfImage + kGutter;
 }
 @end

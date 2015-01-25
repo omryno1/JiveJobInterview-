@@ -6,7 +6,7 @@
 /**
 * Extends the basic UIView with some layouting helper methods
 */
-@interface UIView (JVDView)
+@interface UIView (JVIView)
 
 - (CGFloat)height;
 

@@ -22,7 +22,6 @@
     JVIFeedViewController *feedViewController = [[JVIFeedViewController alloc] init];
 
     UINavigationController *navigationController = [[UINavigationController alloc] init];
-    navigationController.navigationBar.translucent = NO;
     [navigationController pushViewController:feedViewController animated:NO];
 
     self.window.rootViewController = navigationController;

@@ -11,7 +11,7 @@
 
 @interface JVIImage : JSONModel
 
-@property (nonatomic) NSString *imageUrl;
+@property (nonatomic) NSURL *imageUrl;
 @property (nonatomic) JVIUser *user;
 
 @end

@@ -3,10 +3,10 @@
 // Copyright (c) 2014 Jive Software. All rights reserved.
 //
 
-#import "UIView+JVDView.h"
+#import "UIView+JVIView.h"
 
 
-@implementation UIView (JVDView)
+@implementation UIView (JVIView)
 
 - (CGFloat)height {
     return self.frame.size.height;

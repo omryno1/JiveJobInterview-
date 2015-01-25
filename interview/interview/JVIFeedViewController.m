@@ -4,12 +4,14 @@
 //
 
 #import "JVIFeedViewController.h"
-#import "UIView+JVDView.h"
+#import "UIView+JVIView.h"
 #import "JVIInstagramService.h"
 #import "JVIPaginatedList.h"
 #import "JVIImage.h"
 #import "JVIFeedTableViewCell.h"
 
+@interface JVIFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@end
 
 @implementation JVIFeedViewController {
     UITableView *_tableView;
@@ -24,10 +26,10 @@
 
     _items = [[NSMutableArray alloc] init];
 
-    _tableView = [[UITableView alloc] initWithFrame:CGRectZero];
+    _tableView = [[UITableView alloc] init];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; // This removes the ugly lines when there is no content.
+    _tableView.tableFooterView = [[UIView alloc] init]; // This removes the ugly lines when there is no content.
     [self.view addSubview:_tableView];
 
     _refreshControl = [[UIRefreshControl alloc] init];
@@ -49,7 +51,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static const NSString *CellIdentifier = @"Cell";
-    
+
     JVIImage *image = _items[indexPath.row];
     JVIFeedTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
@@ -60,7 +62,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
-    [cell updateImage:image];
+    [cell updateData:image];
 
     return cell;
 }
@@ -80,7 +82,7 @@
         [_refreshControl endRefreshing];
         _items = list.entities;
         [_tableView reloadData];
-    } failed:^(NSError *error) {
+    }                                                failed:^(NSError *error) {
         [_refreshControl endRefreshing];
         NSLog(@"Failed getting feed. %@", error);
     }];

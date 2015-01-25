@@ -10,7 +10,7 @@
 
 @interface JVIFeedTableViewCell : UITableViewCell
 
-- (void)updateImage:(JVIImage *)image;
+- (void)updateData:(JVIImage *)image;
 
 + (CGFloat)heightForWidth:(CGFloat)width;
 

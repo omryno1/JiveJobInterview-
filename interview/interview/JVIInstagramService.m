@@ -40,11 +40,7 @@ static JVIInstagramService *sharedService;
 }
 
 - (void)getFeedWithSuccess:(void (^)(JVIPaginatedList *))success failed:(void (^)(NSError *))failure {
-    [self getPaginatedListApiPath:@"users/self/feed" success:success failure:failure];
-}
-
-- (void)getPaginatedListApiPath:(NSString *)apiPath success:(void (^)(JVIPaginatedList *))success failure:(void (^)(NSError *))failure {
-    [_manager GET:apiPath parameters:@{@"access_token" : _accessToken} success:^(NSURLSessionDataTask *task, id responseObject) {
+    [_manager GET:@"users/self/feed" parameters:@{@"access_token" : _accessToken} success:^(NSURLSessionDataTask *task, id responseObject) {
         JVIPaginatedList *list = [[JVIPaginatedList alloc] initWithDictionary:responseObject error:nil];
 
         if (success) {

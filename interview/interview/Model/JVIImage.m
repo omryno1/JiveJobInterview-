@@ -13,7 +13,7 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError **)err {
     self = [super initWithDictionary:dict error:err];
     if (self) {
-        self.imageUrl = dict[@"images"][@"standard_resolution"][@"url"];
+        self.imageUrl = [[NSURL alloc] initWithString:dict[@"images"][@"standard_resolution"][@"url"]];
     }
 
     return self;
