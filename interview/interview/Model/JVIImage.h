@@ -5,12 +5,11 @@
 
 #import <Foundation/Foundation.h>
 #import <JSONModel/JSONModel.h>
-#import "JVIEntity.h"
 
 @class JVIUser;
 
 
-@interface JVIImage : JVIEntity
+@interface JVIImage : JSONModel
 
 @property (nonatomic) NSString *imageUrl;
 @property (nonatomic) JVIUser *user;

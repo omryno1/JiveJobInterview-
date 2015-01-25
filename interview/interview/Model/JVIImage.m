@@ -19,4 +19,9 @@
     return self;
 }
 
+
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
+}
+
 @end

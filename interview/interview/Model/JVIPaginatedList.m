@@ -4,7 +4,7 @@
 //
 
 #import "JVIPaginatedList.h"
-#import "JVIEntity.h"
+#import "JVIImage.h"
 
 
 @implementation JVIPaginatedList {
@@ -18,9 +18,9 @@
         NSMutableArray *parsedData = [[NSMutableArray alloc] initWithCapacity:data.count];
         NSUInteger i = 0;
         for (NSDictionary *item in data) {
-            JVIEntity *entity = [JVIEntity entityFromDictionary:item];
-            if (entity) {
-                parsedData[i++] = entity;
+            JVIImage *image = [[JVIImage new] initWithDictionary:item error:nil];
+            if (image) {
+                parsedData[i++] = image;
             }
         }
 
