@@ -5,12 +5,14 @@
 
 #import "JVIFeedViewController.h"
 #import "UIView+JVDView.h"
+#import "JVIInstagramService.h"
+#import "JVIPaginatedList.h"
 
 
 @implementation JVIFeedViewController {
     UITableView *_tableView;
     UIRefreshControl *_refreshControl;
-    NSMutableArray *_items;
+    NSArray *_items;
 }
 
 - (void)loadView {
@@ -28,6 +30,7 @@
     [_tableView addSubview:_refreshControl];
     [_refreshControl addTarget:self action:@selector(refreshControlTriggered:) forControlEvents:UIControlEventValueChanged];
 
+    [self loadFirstPage];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -45,6 +48,17 @@
 }
 
 - (void)refreshControlTriggered:(id)sender {
+    [self loadFirstPage];
+}
+
+- (void)loadFirstPage {
+    [[JVIInstagramService sharedService] getFeedWithSuccess:^(JVIPaginatedList *list) {
+        [_refreshControl endRefreshing];
+        _items = list.entities;
+    } failed:^(NSError *error) {
+        [_refreshControl endRefreshing];
+        NSLog(@"Failed getting feed. %@", error);
+    }];
 }
 
 

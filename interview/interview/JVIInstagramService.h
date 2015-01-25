@@ -5,6 +5,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class JVIPaginatedList;
+
 
 @interface JVIInstagramService : NSObject
++ (instancetype)sharedService;
+
+- (void)getFeedWithSuccess:(void (^)(JVIPaginatedList *))success failed:(void (^)(NSError *))failure;
 @end
