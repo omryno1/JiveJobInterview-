@@ -11,10 +11,9 @@
 		58CEC5981A750EEA0039FE36 /* JVIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CEC5971A750EEA0039FE36 /* JVIAppDelegate.m */; };
 		58CEC5A01A750EEA0039FE36 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58CEC59F1A750EEA0039FE36 /* Images.xcassets */; };
 		58CEC5AF1A750EEA0039FE36 /* interviewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CEC5AE1A750EEA0039FE36 /* interviewTests.m */; };
+		6854F0C847989CE38FBE7FF6 /* JVITwitterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6854F382A50F5BFBBC6EC29B /* JVITwitterService.m */; };
+		6854F273250B2B53603FEAA4 /* JVITweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6854F2EA618A7E5080F6836D /* JVITweet.m */; };
 		DFE8890D670DBBF5570D13F7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D81F80823F8095A79A2AFF /* libPods.a */; };
-		ED0E6097C2251E0A930D5899 /* JVIPaginatedList.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E60ADEA15809173F93DF9 /* JVIPaginatedList.m */; };
-		ED0E64EF4D25D11E102ACCCF /* JVIInstagramService.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E6080CE4AD82463344B27 /* JVIInstagramService.m */; };
-		ED0E6574D19B8DACB34AFA11 /* JVIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E6FB596B3BD8227D68401 /* JVIImage.m */; };
 		ED0E67E799CACFE65FF4160B /* JVIFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E6F7564C66B2940CC6084 /* JVIFeedViewController.m */; };
 		ED0E69787A4D1A3F4FFDFB36 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED0E6E000F41593C99CBDF9F /* Localizable.strings */; };
 		ED0E6D20453B535727C85138 /* UIView+JVIView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E68708ABAD43637E23D65 /* UIView+JVIView.m */; };
@@ -43,15 +42,14 @@
 		58CEC5A81A750EEA0039FE36 /* interviewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = interviewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58CEC5AD1A750EEA0039FE36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58CEC5AE1A750EEA0039FE36 /* interviewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = interviewTests.m; sourceTree = "<group>"; };
+		6854F2C9A692F7E5DBA81968 /* JVITwitterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVITwitterService.h; sourceTree = "<group>"; };
+		6854F2EA618A7E5080F6836D /* JVITweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVITweet.m; sourceTree = "<group>"; };
+		6854F31B8CB21CE0EA2409F3 /* JVITweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVITweet.h; sourceTree = "<group>"; };
+		6854F382A50F5BFBBC6EC29B /* JVITwitterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVITwitterService.m; sourceTree = "<group>"; };
 		A5D81F80823F8095A79A2AFF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDD3B211609ECE65AE4E5ED /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		ED0E606A6FCE335B5947D659 /* JVIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIImage.h; sourceTree = "<group>"; };
-		ED0E6080CE4AD82463344B27 /* JVIInstagramService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIInstagramService.m; sourceTree = "<group>"; };
-		ED0E60ADEA15809173F93DF9 /* JVIPaginatedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIPaginatedList.m; sourceTree = "<group>"; };
 		ED0E60B0D14F9BA275417EE7 /* JVIUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIUser.m; sourceTree = "<group>"; };
 		ED0E63B4306D8C6D346E4783 /* JiveInterview-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JiveInterview-Prefix.pch"; sourceTree = "<group>"; };
-		ED0E6592745E544F647BA02D /* JVIInstagramService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIInstagramService.h; sourceTree = "<group>"; };
-		ED0E66193993899F2ECDF024 /* JVIPaginatedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIPaginatedList.h; sourceTree = "<group>"; };
 		ED0E66EE1188EC9C4233E94F /* JVIUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIUser.h; sourceTree = "<group>"; };
 		ED0E685EDB70FA12B9392FB8 /* UIView+JVIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JVIView.h"; sourceTree = "<group>"; };
 		ED0E68708ABAD43637E23D65 /* UIView+JVIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JVIView.m"; sourceTree = "<group>"; };
@@ -60,7 +58,6 @@
 		ED0E6E000F41593C99CBDF9F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		ED0E6F2220DAD6AB5B4FB780 /* JVIFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIFeedViewController.h; sourceTree = "<group>"; };
 		ED0E6F7564C66B2940CC6084 /* JVIFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIFeedViewController.m; sourceTree = "<group>"; };
-		ED0E6FB596B3BD8227D68401 /* JVIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,10 +110,10 @@
 				ED0E6F2220DAD6AB5B4FB780 /* JVIFeedViewController.h */,
 				ED0E6CFF3F57896DFDA7195F /* Views */,
 				ED0E6176870F2EAB109A256E /* Catergories */,
-				ED0E6080CE4AD82463344B27 /* JVIInstagramService.m */,
-				ED0E6592745E544F647BA02D /* JVIInstagramService.h */,
 				ED0E6AF4721207B2CABB08C0 /* Model */,
 				ED0E6E000F41593C99CBDF9F /* Localizable.strings */,
+				6854F382A50F5BFBBC6EC29B /* JVITwitterService.m */,
+				6854F2C9A692F7E5DBA81968 /* JVITwitterService.h */,
 			);
 			path = interview;
 			sourceTree = "<group>";
@@ -177,12 +174,10 @@
 		ED0E6AF4721207B2CABB08C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ED0E60ADEA15809173F93DF9 /* JVIPaginatedList.m */,
-				ED0E66193993899F2ECDF024 /* JVIPaginatedList.h */,
-				ED0E6FB596B3BD8227D68401 /* JVIImage.m */,
-				ED0E606A6FCE335B5947D659 /* JVIImage.h */,
 				ED0E60B0D14F9BA275417EE7 /* JVIUser.m */,
 				ED0E66EE1188EC9C4233E94F /* JVIUser.h */,
+				6854F2EA618A7E5080F6836D /* JVITweet.m */,
+				6854F31B8CB21CE0EA2409F3 /* JVITweet.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -335,11 +330,10 @@
 				58CEC5951A750EEA0039FE36 /* main.m in Sources */,
 				ED0E67E799CACFE65FF4160B /* JVIFeedViewController.m in Sources */,
 				ED0E6D20453B535727C85138 /* UIView+JVIView.m in Sources */,
-				ED0E64EF4D25D11E102ACCCF /* JVIInstagramService.m in Sources */,
-				ED0E6097C2251E0A930D5899 /* JVIPaginatedList.m in Sources */,
-				ED0E6574D19B8DACB34AFA11 /* JVIImage.m in Sources */,
 				ED0E6DFFDC60DD43DC6AE60A /* JVIUser.m in Sources */,
 				ED0E6D58968CA4A11AEFE753 /* JVIFeedTableViewCell.m in Sources */,
+				6854F0C847989CE38FBE7FF6 /* JVITwitterService.m in Sources */,
+				6854F273250B2B53603FEAA4 /* JVITweet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,13 +5,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class JVIImage;
+@class JVITweet;
 
 
 @interface JVIFeedTableViewCell : UITableViewCell
 
-- (void)updateData:(JVIImage *)image;
+- (void)updateData:(JVITweet *)tweet;
 
-+ (CGFloat)heightForWidth:(CGFloat)width;
++ (CGFloat)heightForWidth:(CGFloat)width Text:(NSString*)tweetText;
 
 @end

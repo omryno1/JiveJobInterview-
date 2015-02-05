@@ -5,10 +5,9 @@
 
 #import "JVIFeedViewController.h"
 #import "UIView+JVIView.h"
-#import "JVIInstagramService.h"
-#import "JVIPaginatedList.h"
-#import "JVIImage.h"
 #import "JVIFeedTableViewCell.h"
+#import "JVITwitterService.h"
+#import "JVITweet.h"
 
 @interface JVIFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @end
@@ -55,7 +54,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static const NSString *CellIdentifier = @"Cell";
 
-    JVIImage *image = _items[indexPath.row];
+    JVITweet *tweet = _items[indexPath.row];
     JVIFeedTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[JVIFeedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -65,14 +64,15 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
-    [cell updateData:image];
+    [cell updateData:tweet];
 
     return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [JVIFeedTableViewCell heightForWidth:self.view.width];
+    JVITweet *tweet = _items[indexPath.row];
+    return [JVIFeedTableViewCell heightForWidth:self.view.width Text:tweet.text];
 }
 
 
@@ -81,11 +81,11 @@
 }
 
 - (void)loadFirstPage {
-    [[JVIInstagramService sharedService] getFeedWithSuccess:^(JVIPaginatedList *list) {
+    [[JVITwitterService sharedService] getHomeTimelineWithSuccess:^(NSArray *list) {
         [_refreshControl endRefreshing];
-        _items = list.entities;
+        _items = list;
         [_tableView reloadData];
-    }                                                failed:^(NSError *error) {
+    }                                                      failed:^(NSError *error) {
         [_refreshControl endRefreshing];
         NSLog(@"Failed getting feed. %@", error);
     }];

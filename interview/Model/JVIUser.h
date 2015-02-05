@@ -9,7 +9,7 @@
 
 @interface JVIUser : JSONModel
 
-@property (nonatomic) NSString *full_name;
-@property (nonatomic) NSURL *profile_picture;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSURL *profile_image_url;
 
 @end
