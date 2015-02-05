@@ -3,16 +3,13 @@
 // Copyright (c) 2015 Jive Software. All rights reserved.
 //
 
-#import <AFNetworking/AFHTTPSessionManager.h>
+#import <STTwitter/STTwitterAPI.h>
 #import "JVITwitterService.h"
 #import "JVITweet.h"
 
 
 @implementation JVITwitterService {
-    AFHTTPSessionManager *_manager;
-    NSString *_accessToken;
-
-
+    STTwitterAPI *_twitter;
 }
 
 static JVITwitterService *sharedService;
@@ -24,13 +21,11 @@ static JVITwitterService *sharedService;
         return nil;
     }
 
-    NSURL *baseUrl = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1"];
-    _manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseUrl];
-    _manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    _twitter = [STTwitterAPI twitterAPIWithOAuthConsumerKey:@"kFJ064pfvcmT0EY29ziupHFSV"
+                                             consumerSecret:@"xVLfhefQg5Oft5vglxutIhq8XfTc5Nzx0RDoulJUGDmjoPrGq3"
+                                                 oauthToken:@"3009035432-3e3A46Oyrgw6FJvZ1fHixLbxhkRCawgha1zLVPo"
+                                           oauthTokenSecret:@"GMeSZWGT4dwxKGJEEqhEmOEtndioN7c17iOT77mvq4GOV"];
 
-    // Hard coded authentication.
-    NSString *authHeader = @"OAuth oauth_consumer_key=\"DC0sePOBbQ8bYdC8r4Smg\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"1423139455\",oauth_nonce=\"1264965276\",oauth_version=\"1.0\",oauth_token=\"3009035432-LhCzEFjpkDJ91rPkDFsttcWjs6W4fIiI47iZcLY\",oauth_signature=\"kTkjVU5YfiH15UiW5nJcuQj%2FTeI%3D\"";
-    [_manager.requestSerializer setValue:authHeader forHTTPHeaderField:@"Authorization"];
     return self;
 }
 
@@ -43,21 +38,23 @@ static JVITwitterService *sharedService;
 }
 
 - (void)getHomeTimelineWithSuccess:(void (^)(NSArray *))success failed:(void (^)(NSError *))failure {
-    [_manager GET:@"statuses/home_timeline.json" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSArray *responseArray = responseObject;
-        NSMutableArray *list = [[NSMutableArray alloc] init];
-        for (id item in responseArray) {
-            [list addObject:[[JVITweet alloc] initWithDictionary:item]];
-        }
+    [_twitter getHomeTimelineSinceID:nil
+                               count:10
+                        successBlock:^(NSArray *statuses) {
 
-        if (success) {
-            success(list);
-        }
-    }     failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
+                            NSMutableArray *list = [[NSMutableArray alloc] init];
+                            for (id item in statuses) {
+                                [list addObject:[[JVITweet alloc] initWithDictionary:item]];
+                            }
+                            if (success) {
+                                success(list);
+                            }
+                        }
+                          errorBlock:^(NSError *error) {
+                              if (failure) {
+                                  failure(error);
+                              }
+                          }];
 
 }
 
