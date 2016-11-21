@@ -5,10 +5,7 @@
 
 #import "JVIUser.h"
 
-
-@implementation JVIUser {
-
-}
+@implementation JVIUser
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
     return YES;

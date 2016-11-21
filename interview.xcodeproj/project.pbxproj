@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24AB888F1518FD58CA389FB3 /* libPods-interview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C873D351AA03FDB80C2A2C3C /* libPods-interview.a */; };
 		58CEC5951A750EEA0039FE36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CEC5941A750EEA0039FE36 /* main.m */; };
 		58CEC5981A750EEA0039FE36 /* JVIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CEC5971A750EEA0039FE36 /* JVIAppDelegate.m */; };
 		58CEC5A01A750EEA0039FE36 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58CEC59F1A750EEA0039FE36 /* Images.xcassets */; };
 		58CEC5AF1A750EEA0039FE36 /* interviewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CEC5AE1A750EEA0039FE36 /* interviewTests.m */; };
 		6854F0C847989CE38FBE7FF6 /* JVITwitterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6854F382A50F5BFBBC6EC29B /* JVITwitterService.m */; };
 		6854F273250B2B53603FEAA4 /* JVITweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6854F2EA618A7E5080F6836D /* JVITweet.m */; };
-		DFE8890D670DBBF5570D13F7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D81F80823F8095A79A2AFF /* libPods.a */; };
 		ED0E67E799CACFE65FF4160B /* JVIFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E6F7564C66B2940CC6084 /* JVIFeedViewController.m */; };
 		ED0E69787A4D1A3F4FFDFB36 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED0E6E000F41593C99CBDF9F /* Localizable.strings */; };
 		ED0E6D20453B535727C85138 /* UIView+JVIView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E68708ABAD43637E23D65 /* UIView+JVIView.m */; };
@@ -32,7 +32,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		46B04D1CA4E0A683D4AB115B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		58CEC58F1A750EEA0039FE36 /* interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58CEC5931A750EEA0039FE36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58CEC5941A750EEA0039FE36 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -46,8 +45,8 @@
 		6854F2EA618A7E5080F6836D /* JVITweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVITweet.m; sourceTree = "<group>"; };
 		6854F31B8CB21CE0EA2409F3 /* JVITweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVITweet.h; sourceTree = "<group>"; };
 		6854F382A50F5BFBBC6EC29B /* JVITwitterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVITwitterService.m; sourceTree = "<group>"; };
-		A5D81F80823F8095A79A2AFF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CBDD3B211609ECE65AE4E5ED /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C873D351AA03FDB80C2A2C3C /* libPods-interview.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-interview.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E01214EF84D1FEC67125A8FE /* Pods-interview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interview.debug.xcconfig"; path = "Pods/Target Support Files/Pods-interview/Pods-interview.debug.xcconfig"; sourceTree = "<group>"; };
 		ED0E60B0D14F9BA275417EE7 /* JVIUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIUser.m; sourceTree = "<group>"; };
 		ED0E63B4306D8C6D346E4783 /* JiveInterview-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JiveInterview-Prefix.pch"; sourceTree = "<group>"; };
 		ED0E66EE1188EC9C4233E94F /* JVIUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIUser.h; sourceTree = "<group>"; };
@@ -58,6 +57,7 @@
 		ED0E6E000F41593C99CBDF9F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		ED0E6F2220DAD6AB5B4FB780 /* JVIFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIFeedViewController.h; sourceTree = "<group>"; };
 		ED0E6F7564C66B2940CC6084 /* JVIFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIFeedViewController.m; sourceTree = "<group>"; };
+		F7A89B8C83A751B0C21EEA1B /* Pods-interview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interview.release.xcconfig"; path = "Pods/Target Support Files/Pods-interview/Pods-interview.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFE8890D670DBBF5570D13F7 /* libPods.a in Frameworks */,
+				24AB888F1518FD58CA389FB3 /* libPods-interview.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,14 +79,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04655EA0EF6CC866D0DB504A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E01214EF84D1FEC67125A8FE /* Pods-interview.debug.xcconfig */,
+				F7A89B8C83A751B0C21EEA1B /* Pods-interview.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		518E891EC0231D664C5E2254 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C873D351AA03FDB80C2A2C3C /* libPods-interview.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		58CEC5861A750EEA0039FE36 = {
 			isa = PBXGroup;
 			children = (
 				58CEC5911A750EEA0039FE36 /* interview */,
 				58CEC5AB1A750EEA0039FE36 /* interviewTests */,
 				58CEC5901A750EEA0039FE36 /* Products */,
-				E39CA5C2B348DB3F309FE0A9 /* Pods */,
-				CEE18EB2C4452AF72F494CB0 /* Frameworks */,
+				04655EA0EF6CC866D0DB504A /* Pods */,
+				518E891EC0231D664C5E2254 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,8 +123,8 @@
 				58CEC5971A750EEA0039FE36 /* JVIAppDelegate.m */,
 				58CEC59F1A750EEA0039FE36 /* Images.xcassets */,
 				58CEC5921A750EEA0039FE36 /* Supporting Files */,
-				ED0E6F7564C66B2940CC6084 /* JVIFeedViewController.m */,
 				ED0E6F2220DAD6AB5B4FB780 /* JVIFeedViewController.h */,
+				ED0E6F7564C66B2940CC6084 /* JVIFeedViewController.m */,
 				ED0E6CFF3F57896DFDA7195F /* Views */,
 				ED0E6176870F2EAB109A256E /* Catergories */,
 				ED0E6AF4721207B2CABB08C0 /* Model */,
@@ -143,23 +160,6 @@
 				58CEC5AD1A750EEA0039FE36 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CEE18EB2C4452AF72F494CB0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A5D81F80823F8095A79A2AFF /* libPods.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E39CA5C2B348DB3F309FE0A9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CBDD3B211609ECE65AE4E5ED /* Pods.debug.xcconfig */,
-				46B04D1CA4E0A683D4AB115B /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		ED0E6176870F2EAB109A256E /* Catergories */ = {
@@ -198,11 +198,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58CEC5B21A750EEA0039FE36 /* Build configuration list for PBXNativeTarget "interview" */;
 			buildPhases = (
-				26E09CCD8A765C5EC29089B7 /* Check Pods Manifest.lock */,
+				11C8CBA1DF39862BBEFC9B9B /* [CP] Check Pods Manifest.lock */,
 				58CEC58B1A750EEA0039FE36 /* Sources */,
 				58CEC58C1A750EEA0039FE36 /* Frameworks */,
 				58CEC58D1A750EEA0039FE36 /* Resources */,
-				4E4746C06A964E40C53D466F /* Copy Pods Resources */,
+				4AFBC9D9410CE91239C0748A /* [CP] Embed Pods Frameworks */,
+				CCDA8A3BD315E1DA44E21507 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -238,7 +239,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = JVI;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Jive Software";
 				TargetAttributes = {
 					58CEC58E1A750EEA0039FE36 = {
@@ -289,34 +290,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		26E09CCD8A765C5EC29089B7 /* Check Pods Manifest.lock */ = {
+		11C8CBA1DF39862BBEFC9B9B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		4E4746C06A964E40C53D466F /* Copy Pods Resources */ = {
+		4AFBC9D9410CE91239C0748A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-interview/Pods-interview-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCDA8A3BD315E1DA44E21507 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-interview/Pods-interview-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -369,15 +385,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "interview/JiveInterview-Prefix.pch";
@@ -392,7 +412,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -412,8 +432,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -421,6 +443,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "interview/JiveInterview-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -429,7 +452,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -438,11 +461,12 @@
 		};
 		58CEC5B31A750EEA0039FE36 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBDD3B211609ECE65AE4E5ED /* Pods.debug.xcconfig */;
+			baseConfigurationReference = E01214EF84D1FEC67125A8FE /* Pods-interview.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = interview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jivesoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 			};
@@ -450,11 +474,12 @@
 		};
 		58CEC5B41A750EEA0039FE36 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46B04D1CA4E0A683D4AB115B /* Pods.release.xcconfig */;
+			baseConfigurationReference = F7A89B8C83A751B0C21EEA1B /* Pods-interview.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = interview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jivesoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 			};
@@ -474,6 +499,7 @@
 				);
 				INFOPLIST_FILE = interviewTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jivesoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/interview.app/interview";
 			};
@@ -489,6 +515,7 @@
 				);
 				INFOPLIST_FILE = interviewTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jivesoftware.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/interview.app/interview";
 			};

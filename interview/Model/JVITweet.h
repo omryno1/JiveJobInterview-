@@ -8,13 +8,9 @@
 
 @class JVIUser;
 
+@interface JVITweet : JSONModel
 
-@interface JVITweet : NSObject
-
-@property (nonatomic) JVIUser *user;
-@property (nonatomic) NSString *text;
-
-
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+@property (strong, nonatomic) JVIUser *user;
+@property (strong, nonatomic) NSString *text;
 
 @end

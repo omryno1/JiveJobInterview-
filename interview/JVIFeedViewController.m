@@ -9,61 +9,44 @@
 #import "JVITwitterService.h"
 #import "JVITweet.h"
 
-@interface JVIFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface JVIFeedViewController ()
+
+//State
+@property (strong, nonatomic) NSArray<JVITweet *> *items;
+
 @end
 
-@implementation JVIFeedViewController {
-    UITableView *_tableView;
-    UIRefreshControl *_refreshControl;
-    NSArray *_items;
-}
+@implementation JVIFeedViewController
 
 - (void)loadView {
     [super loadView];
 
     self.title = NSLocalizedString(@"interview.title", @"iOS Interview");
 
-    _items = [[NSMutableArray alloc] init];
+    self.items = [[NSArray alloc] init];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.tableView registerClass:[JVIFeedTableViewCell class] forCellReuseIdentifier:[JVIFeedTableViewCell cellIdentifier]];
 
-    _tableView = [[UITableView alloc] init];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.tableFooterView = [[UIView alloc] init]; // This removes the ugly lines when there is no content.
-    [self.view addSubview:_tableView];
-
-    _refreshControl = [[UIRefreshControl alloc] init];
-    [_tableView addSubview:_refreshControl];
-    [_refreshControl addTarget:self action:@selector(refreshControlTriggered:) forControlEvents:UIControlEventValueChanged];
-
-    [_refreshControl beginRefreshing];
-    [_tableView setContentOffset:CGPointMake(0, -_refreshControl.frame.size.height) animated:NO];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshControlTriggered:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+    
+    
+    [self.tableView setContentOffset:CGPointMake(0, - self.refreshControl.height) animated:NO];
 
     [self loadFirstPage];
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-
-    _tableView.frame = CGRectMake(0, 0, self.view.width, self.view.height);
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _items.count;
+    return self.items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static const NSString *CellIdentifier = @"Cell";
-
-    JVITweet *tweet = _items[indexPath.row];
-    JVIFeedTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[JVIFeedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.separatorInset = UIEdgeInsetsZero;
-        [cell setPreservesSuperviewLayoutMargins:NO];
-        cell.layoutMargins = UIEdgeInsetsZero;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-
+    JVITweet *tweet = self.items[indexPath.row];
+    
+    JVIFeedTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[JVIFeedTableViewCell cellIdentifier] forIndexPath:indexPath];
+    
     [cell updateData:tweet];
 
     return cell;
@@ -71,7 +54,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    JVITweet *tweet = _items[indexPath.row];
+    JVITweet *tweet = self.items[indexPath.row];
     return [JVIFeedTableViewCell heightForWidth:self.view.width Text:tweet.text];
 }
 
@@ -81,12 +64,14 @@
 }
 
 - (void)loadFirstPage {
-    [[JVITwitterService sharedService] getHomeTimelineWithSuccess:^(NSArray *list) {
-        [_refreshControl endRefreshing];
-        _items = list;
-        [_tableView reloadData];
-    }                                                      failed:^(NSError *error) {
-        [_refreshControl endRefreshing];
+    [self.refreshControl beginRefreshing];
+    
+    [[JVITwitterService sharedService] getHomeTimelineWithSuccess:^(NSArray<JVITweet *> *list) {
+        [self.refreshControl endRefreshing];
+        self.items = list;
+        [self.tableView reloadData];
+    } failed:^(NSError *error) {
+        [self.refreshControl endRefreshing];
         NSLog(@"Failed getting feed. %@", error);
     }];
 }

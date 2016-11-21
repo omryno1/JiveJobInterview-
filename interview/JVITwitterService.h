@@ -5,10 +5,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class JVITweet;
 
 @interface JVITwitterService : NSObject
-+ (instancetype)sharedService;
 
-- (void)getHomeTimelineWithSuccess:(void (^)(NSArray *))success failed:(void (^)(NSError *))failure;
++(instancetype)sharedService;
+
+-(void)getHomeTimelineWithSuccess:(void (^)(NSArray<JVITweet *> *))success failed:(void (^)(NSError *))failure;
 
 @end

@@ -7,17 +7,10 @@
 #import "JVIUser.h"
 
 
-@implementation JVITweet {
+@implementation JVITweet
 
-}
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    self = [super init];
-    if (self) {
-        self.text = dictionary[@"text"];
-        self.user = [[JVIUser alloc] initWithDictionary:dictionary[@"user"] error:nil];
-    }
-
-    return self;
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+    return YES;
 }
 
 @end

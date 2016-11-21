@@ -9,11 +9,15 @@
 #import "JVITweet.h"
 #import "JVIUser.h"
 
-@implementation JVIFeedTableViewCell {
-    UIImageView *_avatarImage;
-    UILabel *_nameLabel;
-    UILabel *_textLabel;
-}
+@interface JVIFeedTableViewCell()
+
+@property (strong, nonatomic) UIImageView *avatarImage;
+@property (strong, nonatomic) UILabel *nameLabel;
+@property (strong, nonatomic) UILabel *tweetTextLabel;
+
+@end
+
+@implementation JVIFeedTableViewCell
 
 const CGFloat kGutter = 15;
 const CGFloat kMargin = 10;
@@ -28,18 +32,17 @@ static UIFont *textFont;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
     if (self) {
-        _avatarImage = [[UIImageView alloc] init];
-        [self.contentView addSubview:_avatarImage];
-
-        _nameLabel = [[UILabel alloc] init];
-        _nameLabel.font = nameFont;
-        [self.contentView addSubview:_nameLabel];
-
-        _textLabel = [[UILabel alloc] init];
-        _textLabel.font = textFont;
-        _textLabel.numberOfLines = 0;
-        [self.contentView addSubview:_textLabel];
+        
+        [self.contentView addSubview:self.avatarImage];
+        [self.contentView addSubview:self.nameLabel];
+        [self.contentView addSubview:self.tweetTextLabel];
+        
+        self.separatorInset = UIEdgeInsetsZero;
+        [self setPreservesSuperviewLayoutMargins:NO];
+        self.layoutMargins = UIEdgeInsetsZero;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
     return self;
@@ -48,29 +51,70 @@ static UIFont *textFont;
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    self.height = [JVIFeedTableViewCell heightForWidth:self.width Text:_textLabel.text];
+    self.height = [JVIFeedTableViewCell heightForWidth:self.width Text:self.tweetTextLabel.text];
 
-    _avatarImage.frame = CGRectMake(kGutter, kGutter, kAvatarSize, kAvatarSize);
+    self.avatarImage.top = kGutter;
+    self.avatarImage.left = kGutter;
 
-    _nameLabel.left = _avatarImage.right + kMargin;
-    _nameLabel.top = kGutter;
-    _nameLabel.height = nameFont.lineHeight;
-    _nameLabel.width = self.width - _avatarImage.right - kMargin - kGutter;
+    self.nameLabel.left = self.avatarImage.right + kMargin;
+    self.nameLabel.top = kGutter;
+    self.nameLabel.height = nameFont.lineHeight;
+    self.nameLabel.width = self.width - self.avatarImage.right - kMargin - kGutter;
 
-    _textLabel.left = kGutter;
-    _textLabel.top = MAX(_avatarImage.bottom, _nameLabel.bottom) + kMargin;
-    _textLabel.width = self.width - kGutter * 2;
-    _textLabel.height = self.height - _textLabel.top - kMargin;
+    self.tweetTextLabel.left = kGutter;
+    self.tweetTextLabel.top = MAX(self.avatarImage.bottom, self.nameLabel.bottom) + kMargin;
+    self.tweetTextLabel.width = self.width - kGutter * 2;
+    self.tweetTextLabel.height = self.height - self.tweetTextLabel.top - kMargin;
 }
 
 - (void)updateData:(JVITweet *)tweet {
-    _nameLabel.text = tweet.user.name;
-    [_avatarImage sd_setImageWithURL:tweet.user.profile_image_url];
-    _textLabel.text = tweet.text;
+    self.nameLabel.text = tweet.user.name;
+    [self.avatarImage sd_setImageWithURL:tweet.user.profile_background_image_url_https completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (error) {
+            NSLog(@"error loading avatar image\n%@", error);
+            return;
+        }
+    }];
+    self.tweetTextLabel.text = tweet.text;
 }
 
 + (CGFloat)heightForWidth:(CGFloat)width Text:(NSString *)tweetText {
     CGRect textSize = [tweetText boundingRectWithSize:CGSizeMake(width - kGutter * 2, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : textFont} context:nil];
     return kGutter + MAX(kAvatarSize, nameFont.lineHeight) + kMargin + textSize.size.height + kMargin;
 }
+
++(NSString *)cellIdentifier {
+    return @"JVIFeedTableViewCellIdentifier";
+}
+
+#pragma mark - Lazy inits
+
+-(UIImageView *)avatarImage {
+    if (!_avatarImage) {
+        _avatarImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kAvatarSize, kAvatarSize)];
+        _avatarImage.clipsToBounds = YES;
+        _avatarImage.layer.cornerRadius = kAvatarSize / 2;
+        _avatarImage.layer.borderColor = [UIColor grayColor].CGColor;
+        _avatarImage.layer.borderWidth = 0.5;
+    }
+    return _avatarImage;
+}
+
+-(UILabel *)nameLabel {
+    if (!_nameLabel) {
+        _nameLabel = [[UILabel alloc] init];
+        _nameLabel.font = nameFont;
+    }
+    return _nameLabel;
+}
+
+-(UILabel *)tweetTextLabel {
+    if (!_tweetTextLabel) {
+        _tweetTextLabel = [[UILabel alloc] init];
+        _tweetTextLabel.font = textFont;
+        _tweetTextLabel.numberOfLines = 0;
+    }
+    return _tweetTextLabel;
+}
+
 @end
