@@ -38,8 +38,10 @@ static JVITwitterService *sharedService;
 
 
 
--(void)getHomeTimelineWithSuccess:(void (^)(NSArray<JVITweet *> *))success failed:(void (^)(NSError *))failure {
-    [self.twitter getHomeTimelineSinceID:nil count:10 successBlock:^(NSArray *statuses) {
+-(void)getHomeTimelineWithSuccess:(void (^)(NSArray<JVITweet *> *))success TweetID:(NSString *)tweetID failed:(void (^)(NSError *))failure{
+    [self.twitter getStatusesHomeTimelineWithCount:@"10" sinceID:nil maxID:tweetID trimUser:nil excludeReplies:nil contributorDetails:nil includeEntities:nil successBlock:^(NSArray *statuses) {
+//    [self.twitter getHomeTimelineSinceID:nil count:10 successBlock:^(NSArray *statuses) {
+        NSLog(@"%@",statuses);
         NSMutableArray<JVITweet *> *list = [[NSMutableArray alloc] init];
         for (NSDictionary *statusDict in statuses) {
             [list addObject:[[JVITweet alloc] initWithDictionary:statusDict error:nil]];

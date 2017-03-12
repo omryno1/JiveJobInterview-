@@ -4,7 +4,9 @@
 //
 
 #import "JVITweet.h"
+
 #import "JVIUser.h"
+#import "JVIEntities.h"
 
 
 @implementation JVITweet

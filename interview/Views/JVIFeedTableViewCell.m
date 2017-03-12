@@ -8,12 +8,16 @@
 #import "UIImageView+WebCache.h"
 #import "JVITweet.h"
 #import "JVIUser.h"
+#import "JVIEntities.h"
+#import "JVIMedia.h"
 
 @interface JVIFeedTableViewCell()
 
 @property (strong, nonatomic) UIImageView *avatarImage;
 @property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UILabel *tweetTextLabel;
+
+@property (strong, nonatomic) UIImageView <Optional> *tweetImage;
 
 @end
 
@@ -22,6 +26,7 @@
 const CGFloat kGutter = 15;
 const CGFloat kMargin = 10;
 const CGFloat kAvatarSize = 40;
+CGFloat kImageSize = 230;
 static UIFont *nameFont;
 static UIFont *textFont;
 
@@ -38,6 +43,7 @@ static UIFont *textFont;
         [self.contentView addSubview:self.avatarImage];
         [self.contentView addSubview:self.nameLabel];
         [self.contentView addSubview:self.tweetTextLabel];
+
         
         self.separatorInset = UIEdgeInsetsZero;
         [self setPreservesSuperviewLayoutMargins:NO];
@@ -50,9 +56,10 @@ static UIFont *textFont;
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-
+    
     self.height = [JVIFeedTableViewCell heightForWidth:self.width Text:self.tweetTextLabel.text];
 
+    
     self.avatarImage.top = kGutter;
     self.avatarImage.left = kGutter;
 
@@ -64,10 +71,27 @@ static UIFont *textFont;
     self.tweetTextLabel.left = kGutter;
     self.tweetTextLabel.top = MAX(self.avatarImage.bottom, self.nameLabel.bottom) + kMargin;
     self.tweetTextLabel.width = self.width - kGutter * 2;
-    self.tweetTextLabel.height = self.height - self.tweetTextLabel.top - kMargin;
+    self.tweetTextLabel.height = self.height - self.tweetTextLabel.top - kMargin - kImageSize;
+
+    
+    self.tweetImage.left = kGutter;
+    self.tweetImage.top = self.tweetTextLabel.bottom + kGutter;
+    self.tweetImage.width = self.tweetTextLabel.width;
+    self.tweetImage.height = self.height - self.tweetImage.top - kGutter;
 }
 
-- (void)updateData:(JVITweet *)tweet {
+
+//This methoed is used to make sure that image from "old" cell wont get in a new cell
+-(void)prepareForReuse
+{
+    [super prepareForReuse];
+    
+    self.tweetImage.image = nil;
+}
+
+- (void)updateData:(JVITweet *)tweet TableView:(UITableView *)tableView {
+    
+    
     self.nameLabel.text = tweet.user.name;
     [self.avatarImage sd_setImageWithURL:tweet.user.profile_background_image_url_https completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (error) {
@@ -76,11 +100,27 @@ static UIFont *textFont;
         }
     }];
     self.tweetTextLabel.text = tweet.text;
+    
+    JVIEntities *cellEntitie = tweet.entities;
+    
+    if (cellEntitie.media != nil){
+        [self.contentView addSubview:self.tweetImage];
+
+        JVIMedia *imageURL = cellEntitie.media[0];
+        
+        self.tweetImage.image = nil;
+        
+        [self.tweetImage sd_setImageWithURL:imageURL.media_url_https placeholderImage:nil options:SDWebImageProgressiveDownload completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (error) {
+                NSLog(@"error loading image\n%@",error);
+            }
+        }];
+    }
 }
 
 + (CGFloat)heightForWidth:(CGFloat)width Text:(NSString *)tweetText {
     CGRect textSize = [tweetText boundingRectWithSize:CGSizeMake(width - kGutter * 2, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : textFont} context:nil];
-    return kGutter + MAX(kAvatarSize, nameFont.lineHeight) + kMargin + textSize.size.height + kMargin;
+    return kGutter + MAX(kAvatarSize, nameFont.lineHeight) + kMargin + textSize.size.height + kMargin + kImageSize + kMargin;
 }
 
 +(NSString *)cellIdentifier {
@@ -115,6 +155,17 @@ static UIFont *textFont;
         _tweetTextLabel.numberOfLines = 0;
     }
     return _tweetTextLabel;
+}
+
+-(UIImageView *)tweetImage {
+    if (!_tweetImage) {
+        _tweetImage = [[UIImageView alloc] initWithFrame:CGRectMake(kGutter, self.textLabel.bottom, kAvatarSize, kAvatarSize)];
+        _tweetImage.clipsToBounds = YES;
+        _tweetImage.layer.borderColor = [UIColor grayColor].CGColor;
+        _tweetImage.layer.borderWidth = 0.5;
+        _tweetImage.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    return _tweetImage;
 }
 
 @end

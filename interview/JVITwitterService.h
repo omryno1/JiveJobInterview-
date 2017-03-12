@@ -11,6 +11,6 @@
 
 +(instancetype)sharedService;
 
--(void)getHomeTimelineWithSuccess:(void (^)(NSArray<JVITweet *> *))success failed:(void (^)(NSError *))failure;
+-(void)getHomeTimelineWithSuccess:(void (^)(NSArray<JVITweet *> *))success TweetID:(NSString *)tweetID failed:(void (^)(NSError *))failure ;
 
 @end

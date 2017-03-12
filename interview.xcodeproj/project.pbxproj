@@ -14,6 +14,8 @@
 		58CEC5AF1A750EEA0039FE36 /* interviewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CEC5AE1A750EEA0039FE36 /* interviewTests.m */; };
 		6854F0C847989CE38FBE7FF6 /* JVITwitterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6854F382A50F5BFBBC6EC29B /* JVITwitterService.m */; };
 		6854F273250B2B53603FEAA4 /* JVITweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6854F2EA618A7E5080F6836D /* JVITweet.m */; };
+		CDD4C1F81E7539F9009B0B0D /* JVIEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD4C1F71E7539F9009B0B0D /* JVIEntities.m */; };
+		CDD4C1FB1E753D97009B0B0D /* JVIMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD4C1FA1E753D97009B0B0D /* JVIMedia.m */; };
 		ED0E67E799CACFE65FF4160B /* JVIFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E6F7564C66B2940CC6084 /* JVIFeedViewController.m */; };
 		ED0E69787A4D1A3F4FFDFB36 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED0E6E000F41593C99CBDF9F /* Localizable.strings */; };
 		ED0E6D20453B535727C85138 /* UIView+JVIView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E68708ABAD43637E23D65 /* UIView+JVIView.m */; };
@@ -46,6 +48,10 @@
 		6854F31B8CB21CE0EA2409F3 /* JVITweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVITweet.h; sourceTree = "<group>"; };
 		6854F382A50F5BFBBC6EC29B /* JVITwitterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVITwitterService.m; sourceTree = "<group>"; };
 		C873D351AA03FDB80C2A2C3C /* libPods-interview.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-interview.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDD4C1F61E7539F9009B0B0D /* JVIEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIEntities.h; sourceTree = "<group>"; };
+		CDD4C1F71E7539F9009B0B0D /* JVIEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIEntities.m; sourceTree = "<group>"; };
+		CDD4C1F91E753D97009B0B0D /* JVIMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVIMedia.h; sourceTree = "<group>"; };
+		CDD4C1FA1E753D97009B0B0D /* JVIMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIMedia.m; sourceTree = "<group>"; };
 		E01214EF84D1FEC67125A8FE /* Pods-interview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-interview.debug.xcconfig"; path = "Pods/Target Support Files/Pods-interview/Pods-interview.debug.xcconfig"; sourceTree = "<group>"; };
 		ED0E60B0D14F9BA275417EE7 /* JVIUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVIUser.m; sourceTree = "<group>"; };
 		ED0E63B4306D8C6D346E4783 /* JiveInterview-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JiveInterview-Prefix.pch"; sourceTree = "<group>"; };
@@ -174,10 +180,14 @@
 		ED0E6AF4721207B2CABB08C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ED0E60B0D14F9BA275417EE7 /* JVIUser.m */,
-				ED0E66EE1188EC9C4233E94F /* JVIUser.h */,
 				6854F2EA618A7E5080F6836D /* JVITweet.m */,
 				6854F31B8CB21CE0EA2409F3 /* JVITweet.h */,
+				ED0E60B0D14F9BA275417EE7 /* JVIUser.m */,
+				ED0E66EE1188EC9C4233E94F /* JVIUser.h */,
+				CDD4C1F61E7539F9009B0B0D /* JVIEntities.h */,
+				CDD4C1F71E7539F9009B0B0D /* JVIEntities.m */,
+				CDD4C1F91E753D97009B0B0D /* JVIMedia.h */,
+				CDD4C1FA1E753D97009B0B0D /* JVIMedia.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,6 +354,8 @@
 			files = (
 				58CEC5981A750EEA0039FE36 /* JVIAppDelegate.m in Sources */,
 				58CEC5951A750EEA0039FE36 /* main.m in Sources */,
+				CDD4C1FB1E753D97009B0B0D /* JVIMedia.m in Sources */,
+				CDD4C1F81E7539F9009B0B0D /* JVIEntities.m in Sources */,
 				ED0E67E799CACFE65FF4160B /* JVIFeedViewController.m in Sources */,
 				ED0E6D20453B535727C85138 /* UIView+JVIView.m in Sources */,
 				ED0E6DFFDC60DD43DC6AE60A /* JVIUser.m in Sources */,

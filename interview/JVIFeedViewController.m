@@ -8,6 +8,7 @@
 #import "JVIFeedTableViewCell.h"
 #import "JVITwitterService.h"
 #import "JVITweet.h"
+#import "JVIEntities.h"
 
 @interface JVIFeedViewController ()
 
@@ -17,6 +18,8 @@
 @end
 
 @implementation JVIFeedViewController
+
+NSString *tweetID = nil;
 
 - (void)loadView {
     [super loadView];
@@ -35,7 +38,7 @@
     
     [self.tableView setContentOffset:CGPointMake(0, - self.refreshControl.height) animated:NO];
 
-    [self loadFirstPage];
+    [self loadMainFeed];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -47,9 +50,27 @@
     
     JVIFeedTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[JVIFeedTableViewCell cellIdentifier] forIndexPath:indexPath];
     
-    [cell updateData:tweet];
+    [cell updateData:tweet TableView:self.tableView];
 
     return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    JVITweet *tweet = self.items[indexPath.row];
+    NSLog(@"%@",tweet);
+    
+    //Building the url of the specipied Tweet
+    
+    NSString *tweetID = [tweet id];
+    NSString *username = [tweet name];
+    NSString *tweetURL = [NSString stringWithFormat:@"https://twitter.com/%@/status/%@",username, tweetID];
+    
+    NSURL *url = [NSURL URLWithString:tweetURL];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url];
+    }
 }
 
 
@@ -60,21 +81,25 @@
 
 
 - (void)refreshControlTriggered:(id)sender {
-    [self loadFirstPage];
+    
+    int itemsLength = (int)[_items count] - 1 ;
+    tweetID = [_items[itemsLength] id];
+    [self loadMainFeed];
 }
 
-- (void)loadFirstPage {
+- (void)loadMainFeed {
     [self.refreshControl beginRefreshing];
     
     [[JVITwitterService sharedService] getHomeTimelineWithSuccess:^(NSArray<JVITweet *> *list) {
         [self.refreshControl endRefreshing];
         self.items = list;
         [self.tableView reloadData];
-    } failed:^(NSError *error) {
+    } TweetID: tweetID failed:^(NSError *error) {
         [self.refreshControl endRefreshing];
         NSLog(@"Failed getting feed. %@", error);
     }];
 }
+
 
 
 @end
