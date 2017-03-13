@@ -13,7 +13,7 @@
 @interface JVIFeedViewController ()
 
 //State
-@property (strong, nonatomic) NSArray<JVITweet *> *items;
+@property (strong, nonatomic) NSMutableArray *items;
 
 @end
 
@@ -27,7 +27,7 @@ NSString *tweetText =nil;
 
     self.title = NSLocalizedString(@"interview.title", @"iOS Interview");
 
-    self.items = [[NSArray alloc] init];
+    self.items = [[NSMutableArray alloc] init];
     
     UIBarButtonItem *addTweet = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTweet)];
     self.navigationItem.rightBarButtonItem = addTweet;
@@ -79,6 +79,21 @@ NSString *tweetText =nil;
     }
 }
 
+//Fetching more tweets once we reach the last cell
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == _items.count -1){
+        //load the next batch of tweets
+        int lastItem = (int)[_items count] - 1 ;
+        tweetID = [_items[lastItem] id];
+        [[JVITwitterService sharedService] loadNextPageInTimeline:^(NSArray<JVITweet *> *list) {
+            [self.items addObjectsFromArray:list];
+            [tableView reloadData];
+        } TweetID:tweetID failed:^(NSError *error) {
+            NSLog(@"Failed getting feed. %@", error);
+        }];
+    }
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     JVITweet *tweet = self.items[indexPath.row];
@@ -90,9 +105,6 @@ NSString *tweetText =nil;
 
 
 - (void)refreshControlTriggered:(id)sender {
-    
-    int itemsLength = (int)[_items count] - 1 ;
-    tweetID = [_items[itemsLength] id];
     [self loadMainFeed];
 }
 
@@ -101,15 +113,17 @@ NSString *tweetText =nil;
     
     [[JVITwitterService sharedService] getHomeTimelineWithSuccess:^(NSArray<JVITweet *> *list) {
         [self.refreshControl endRefreshing];
-        self.items = list;
+        [self.items addObjectsFromArray:list];
         [self.tableView reloadData];
-    } TweetID: tweetID failed:^(NSError *error) {
+    } failed:^(NSError *error) {
         [self.refreshControl endRefreshing];
         NSLog(@"Failed getting feed. %@", error);
     }];
 }
 
 -(void) addTweet{
+    
+    //Adding alert action sheet to add the tweet/image
     
     UIAlertController *add = [UIAlertController alertControllerWithTitle:@"Upload new Tweet" message:@"Enter Your Tweet :" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -152,13 +166,16 @@ NSString *tweetText =nil;
     [self presentViewController: add animated:true completion:nil];
 }
 
+
+
 -(void)tweetImage {
+    //image picker controller Interface
     
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     UIAlertController *chooseImage = [UIAlertController alertControllerWithTitle:@"Choose an image" message:@"Select your image source" preferredStyle:UIAlertControllerStyleActionSheet];
     
     imagePicker.delegate = self;
-    NSLog(@"%@",tweetText);
+//    NSLog(@"%@",tweetText);
     
     UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -179,6 +196,7 @@ NSString *tweetText =nil;
     [self presentViewController:chooseImage animated:true completion:nil];
 }
 
+//Getting the selected image
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
 
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];

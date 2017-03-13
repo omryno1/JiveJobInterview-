@@ -38,9 +38,8 @@ static JVITwitterService *sharedService;
 
 
 
--(void)getHomeTimelineWithSuccess:(void (^)(NSArray<JVITweet *> *))success TweetID:(NSString *)tweetID failed:(void (^)(NSError *))failure{
-    [self.twitter getStatusesHomeTimelineWithCount:@"10" sinceID:nil maxID:tweetID trimUser:nil excludeReplies:nil contributorDetails:nil includeEntities:nil successBlock:^(NSArray *statuses) {
-//    [self.twitter getHomeTimelineSinceID:nil count:10 successBlock:^(NSArray *statuses) {
+-(void)getHomeTimelineWithSuccess:(void (^)(NSArray<JVITweet *> *))success failed:(void (^)(NSError *))failure{
+    [self.twitter getHomeTimelineSinceID:nil count:10 successBlock:^(NSArray *statuses) {
 //        NSLog(@"%@",statuses);
         NSMutableArray<JVITweet *> *list = [[NSMutableArray alloc] init];
         for (NSDictionary *statusDict in statuses) {
@@ -59,9 +58,29 @@ static JVITwitterService *sharedService;
 
 }
 
+-(void)loadNextPageInTimeline:(void (^)(NSArray<JVITweet *> *))success TweetID:(NSString *)tweetID failed:(void (^)(NSError *))failure{
+        [self.twitter getStatusesHomeTimelineWithCount:@"10" sinceID:nil maxID:tweetID trimUser:nil excludeReplies:nil contributorDetails:nil includeEntities:nil successBlock:^(NSArray *statuses) {
+        NSMutableArray<JVITweet *> *list = [[NSMutableArray alloc] init];
+        for (NSDictionary *statusDict in statuses) {
+            [list addObject:[[JVITweet alloc] initWithDictionary:statusDict error:nil]];
+        }
+        
+        if (success) {
+            success(list);
+        }
+        
+    } errorBlock:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+    
+}
+
 -(void)uploadData:(NSString *) tweet TweetImage:(NSData *) data{
     
     [self.twitter postMediaUploadData:data fileName:nil uploadProgressBlock:nil successBlock:^(NSDictionary *imageDictionary, NSString *mediaID, NSInteger size) {
+        
         NSLog(@"image upload succesful : %@",mediaID);
         NSArray *imageID = [NSArray arrayWithObjects:mediaID, nil];
         [self postTweet:imageID TweetText:tweet];
