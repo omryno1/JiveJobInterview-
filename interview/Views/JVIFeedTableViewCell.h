@@ -10,9 +10,9 @@
 
 @interface JVIFeedTableViewCell : UITableViewCell
 
--(void)updateData:(JVITweet *)tweet TableView:(UITableView *)tableView;
+-(void)updateData:(JVITweet *)tweet;
 
-+(CGFloat)heightForWidth:(CGFloat)width Text:(NSString*)tweetText;
++(CGFloat)heightForWidth:(CGFloat)width Text:(NSString*)tweetText imageHeight:(CGFloat)imageHeight;
 
 +(NSString *)cellIdentifier;
 

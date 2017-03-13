@@ -28,6 +28,10 @@ NSString *tweetID = nil;
 
     self.items = [[NSArray alloc] init];
     
+    UIBarButtonItem *addTweet = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTweet)];
+    self.navigationItem.rightBarButtonItem = addTweet;
+
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.tableView registerClass:[JVIFeedTableViewCell class] forCellReuseIdentifier:[JVIFeedTableViewCell cellIdentifier]];
 
@@ -50,7 +54,7 @@ NSString *tweetID = nil;
     
     JVIFeedTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[JVIFeedTableViewCell cellIdentifier] forIndexPath:indexPath];
     
-    [cell updateData:tweet TableView:self.tableView];
+    [cell updateData:tweet];
 
     return cell;
 }
@@ -76,7 +80,10 @@ NSString *tweetID = nil;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     JVITweet *tweet = self.items[indexPath.row];
-    return [JVIFeedTableViewCell heightForWidth:self.view.width Text:tweet.text];
+    CGFloat hasImage = 0;
+    if (tweet.entities.media != nil)
+        hasImage = 230;
+    return [JVIFeedTableViewCell heightForWidth:self.view.width Text:tweet.text imageHeight: hasImage];
 }
 
 
@@ -98,6 +105,36 @@ NSString *tweetID = nil;
         [self.refreshControl endRefreshing];
         NSLog(@"Failed getting feed. %@", error);
     }];
+}
+
+-(void) addTweet{
+    UIAlertController *add = [UIAlertController alertControllerWithTitle:@"Upload new Tweet" message:@"Enter Your Tweet :" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [add addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Tweet away ...";
+        
+    }];
+    
+    
+    
+    
+    UIAlertAction *upload = [UIAlertAction actionWithTitle:@"Upload" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        if ([add textFields].firstObject != nil){
+            UITextField *text = [add textFields].firstObject;
+            if ([[text text]  isEqual: @"#jiveisrael interview"]) {
+                NSLog(@"Do Somthing");
+            }
+        }
+    }];
+    
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [add addAction:upload];
+    [add addAction:cancel];
+    
+    [self presentViewController: add animated:true completion:nil];
 }
 
 

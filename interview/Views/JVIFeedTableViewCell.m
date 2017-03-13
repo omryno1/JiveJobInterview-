@@ -57,7 +57,7 @@ static UIFont *textFont;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.height = [JVIFeedTableViewCell heightForWidth:self.width Text:self.tweetTextLabel.text];
+    self.height = [JVIFeedTableViewCell heightForWidth:self.width Text:self.tweetTextLabel.text imageHeight:kImageSize];
 
     
     self.avatarImage.top = kGutter;
@@ -73,11 +73,7 @@ static UIFont *textFont;
     self.tweetTextLabel.width = self.width - kGutter * 2;
     self.tweetTextLabel.height = self.height - self.tweetTextLabel.top - kMargin - kImageSize;
 
-    
-    self.tweetImage.left = kGutter;
-    self.tweetImage.top = self.tweetTextLabel.bottom + kGutter;
-    self.tweetImage.width = self.tweetTextLabel.width;
-    self.tweetImage.height = self.height - self.tweetImage.top - kGutter;
+
 }
 
 
@@ -85,11 +81,14 @@ static UIFont *textFont;
 -(void)prepareForReuse
 {
     [super prepareForReuse];
-    
+
     self.tweetImage.image = nil;
+    
+    [self.tweetImage removeFromSuperview];
+    
 }
 
-- (void)updateData:(JVITweet *)tweet TableView:(UITableView *)tableView {
+- (void)updateData:(JVITweet *)tweet{
     
     
     self.nameLabel.text = tweet.user.name;
@@ -103,24 +102,44 @@ static UIFont *textFont;
     
     JVIEntities *cellEntitie = tweet.entities;
     
+    kImageSize = 0;
+    
     if (cellEntitie.media != nil){
-        [self.contentView addSubview:self.tweetImage];
+        
+        [self handleImage:cellEntitie];
+        
 
-        JVIMedia *imageURL = cellEntitie.media[0];
-        
-        self.tweetImage.image = nil;
-        
-        [self.tweetImage sd_setImageWithURL:imageURL.media_url_https placeholderImage:nil options:SDWebImageProgressiveDownload completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            if (error) {
-                NSLog(@"error loading image\n%@",error);
-            }
-        }];
     }
 }
 
-+ (CGFloat)heightForWidth:(CGFloat)width Text:(NSString *)tweetText {
+- (void)handleImage:(JVIEntities *)tweetEntitie {
+    
+    //image layout
+    self.tweetImage.left = kGutter;
+    self.tweetImage.top = self.tweetTextLabel.bottom + kGutter;
+    self.tweetImage.width = self.tweetTextLabel.width;
+    self.tweetImage.height = self.height - self.tweetImage.top - kGutter;
+    
+    //adding to subview
+    [self.contentView addSubview:self.tweetImage];
+    
+    //loading the image
+    JVIMedia *imageURL = tweetEntitie.media[0];
+    kImageSize = 230;
+    
+    self.tweetImage.image = nil;
+    
+    [self.tweetImage sd_setImageWithURL:imageURL.media_url_https placeholderImage:nil options:SDWebImageProgressiveDownload completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (error) {
+            NSLog(@"error loading image\n%@",error);
+        }
+    }];
+    
+}
+
++ (CGFloat)heightForWidth:(CGFloat)width Text:(NSString *)tweetText imageHeight:(CGFloat)imageHeight{
     CGRect textSize = [tweetText boundingRectWithSize:CGSizeMake(width - kGutter * 2, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : textFont} context:nil];
-    return kGutter + MAX(kAvatarSize, nameFont.lineHeight) + kMargin + textSize.size.height + kMargin + kImageSize + kMargin;
+    return kGutter + MAX(kAvatarSize, nameFont.lineHeight) + kMargin + textSize.size.height + kMargin + imageHeight + kMargin;
 }
 
 +(NSString *)cellIdentifier {
