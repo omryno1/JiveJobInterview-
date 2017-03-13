@@ -20,6 +20,7 @@
 @implementation JVIFeedViewController
 
 NSString *tweetID = nil;
+NSString *tweetText =nil;
 
 - (void)loadView {
     [super loadView];
@@ -63,7 +64,8 @@ NSString *tweetID = nil;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     JVITweet *tweet = self.items[indexPath.row];
-    NSLog(@"%@",tweet);
+    
+//    NSLog(@"%@",tweet);
     
     //Building the url of the specipied Tweet
     
@@ -108,6 +110,7 @@ NSString *tweetID = nil;
 }
 
 -(void) addTweet{
+    
     UIAlertController *add = [UIAlertController alertControllerWithTitle:@"Upload new Tweet" message:@"Enter Your Tweet :" preferredStyle:UIAlertControllerStyleAlert];
     
     [add addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
@@ -115,28 +118,82 @@ NSString *tweetID = nil;
         
     }];
     
-    
-    
-    
-    UIAlertAction *upload = [UIAlertAction actionWithTitle:@"Upload" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *tweet = [UIAlertAction actionWithTitle:@"Tweet" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
         
         if ([add textFields].firstObject != nil){
-            UITextField *text = [add textFields].firstObject;
-            if ([[text text]  isEqual: @"#jiveisrael interview"]) {
-                NSLog(@"Do Somthing");
+            tweetText = [NSString stringWithFormat:@"%@", [add textFields].firstObject.text];
+            
+            if ([tweetText isEqual: @"#jiveisrael interview"]) {
+                [self tweetImage];
+            }
+            else{
+                if (![tweetText isEqualToString:@""]){
+                    [[JVITwitterService sharedService] postTweet:nil TweetText:tweetText];
+                }
             }
         }
     }];
     
+    UIAlertAction *upload = [UIAlertAction actionWithTitle:@"Upload Image" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        if ([add textFields].firstObject != nil){
+            tweetText = [NSString stringWithFormat:@"%@", [add textFields].firstObject.text];
+            [self tweetImage];
+        }
+    }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     
+    [add addAction:tweet];
     [add addAction:upload];
     [add addAction:cancel];
     
     [self presentViewController: add animated:true completion:nil];
 }
 
+-(void)tweetImage {
+    
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    UIAlertController *chooseImage = [UIAlertController alertControllerWithTitle:@"Choose an image" message:@"Select your image source" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    imagePicker.delegate = self;
+    NSLog(@"%@",tweetText);
+    
+    UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:imagePicker animated:true completion:nil];
+    }];
+    
+    UIAlertAction *library = [UIAlertAction actionWithTitle:@"Photo Librery" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePicker animated:true completion:nil];
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [chooseImage addAction:camera];
+    [chooseImage addAction:library];
+    [chooseImage addAction:cancel];
+    
+    [self presentViewController:chooseImage animated:true completion:nil];
+}
 
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    NSData *data = UIImageJPEGRepresentation(image, 0.8);
+    
+    [[JVITwitterService sharedService] uploadData:tweetText TweetImage:data];
+    
+    [picker dismissViewControllerAnimated:true completion:nil];
+    
+
+    
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:true completion:nil];
+}
 
 @end

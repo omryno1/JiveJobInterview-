@@ -3,5 +3,5 @@
 // Copyright (c) 2015 Jive Software. All rights reserved.
 //
 
-@interface JVIFeedViewController : UITableViewController
+@interface JVIFeedViewController : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @end

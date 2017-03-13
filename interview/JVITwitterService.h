@@ -13,4 +13,8 @@
 
 -(void)getHomeTimelineWithSuccess:(void (^)(NSArray<JVITweet *> *))success TweetID:(NSString *)tweetID failed:(void (^)(NSError *))failure ;
 
+-(void)uploadData:(NSString *)tweet TweetImage:(NSData *) data;
+
+-(void)postTweet:(NSArray *)mediaID TweetText:(NSString *) tweet;
+
 @end
